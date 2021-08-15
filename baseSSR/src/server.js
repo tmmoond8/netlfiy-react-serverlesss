@@ -14,7 +14,6 @@ app.use('/dist', express.static('dist'));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 app.get('*', (req, res) => {
   const renderString = renderToString(<App page={req.path.replace('/', '')} />);
-  console.log('renderString', renderString);
   const result = html.replace('<div id="root"></div>', `<div id="root">${renderString}</div>`);
   res.send(result);
 });
