@@ -13,8 +13,13 @@ const html = fs.readFileSync(
 app.use('/dist', express.static('dist'));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 app.get('*', (req, res) => {
+  const serverData = {
+    from: 'server',
+  };
   const renderString = renderToString(<App page={req.path.replace('/', '')} />);
-  const result = html.replace('<div id="root"></div>', `<div id="root">${renderString}</div>`);
+  const result = html
+    .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)
+    .replace('__DATA_FROM_SERVER__', JSON.stringify(serverData));
   res.send(result);
 });
 app.listen(3000);
