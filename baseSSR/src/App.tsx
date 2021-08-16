@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 
-class App extends React.Component {
+class App extends React.Component<{page: string}> {
   state = {
     page: this.props.page,
   };
@@ -13,8 +13,8 @@ class App extends React.Component {
     };
   }
 
-  onChangePage = e => {
-    const page = e.target.dataset.page;
+  onChangePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const page = (e.target as HTMLButtonElement).dataset?.page;
     window.history.pushState(page, '', `/${page}`);
     this.setState({ page });
   };
