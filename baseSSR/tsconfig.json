@@ -8,9 +8,9 @@
     "esModuleInterop": true,
     "strict": true,
     "jsx":"react",
-    "outDir": "dist-tsc",
+    "outDir": "dist-server",
     "target": "es6"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "dist-server/server.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
