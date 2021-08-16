@@ -15,7 +15,7 @@
     "dev:lambda": "netlify-lambda serve dist-server/functions",
     "build": "react-scripts build",
     "build:server": "yarn tsc -p tsconfig.server.json",
-    "build:netlify": "yarn build && yarn build:server",
+    "build:netlify": "yarn build && mv build/index.html build/server.html && yarn build:server",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
