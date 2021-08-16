@@ -1,15 +1,10 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
     "jsx":"react",
     "outDir": "dist-server",
-    "target": "es6"
+    "noEmit": false,
   },
   "include": ["src/**/*", "dist-server/server.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
