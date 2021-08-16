@@ -3,24 +3,32 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
   },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", "jsx"]
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            configFile: path.resolve(__dirname, '.babelrc.client.js'),
-          },
-        },
+          test: /\.ts(x?)$/,
+          exclude: ['/node_modules'],
+          use: [
+              {
+                  loader: "ts-loader"
+              }
+          ]
       },
-    ],
+      {
+          enforce: "pre",
+          test: /\.js$/,
+          exclude: ['/node_modules'],
+          loader: "source-map-loader"
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
