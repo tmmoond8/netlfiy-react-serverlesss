@@ -2,4 +2,4 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import App from './App';
 
-ReactDom.render(<App page="home" />, document.querySelector('#root'));
+ReactDom.render(<App page={window.location.pathname || '/home'} />, document.querySelector('#root'));

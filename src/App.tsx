@@ -15,19 +15,19 @@ class App extends React.Component<{page: string}> {
 
   onChangePage = (e: React.MouseEvent<HTMLButtonElement>) => {
     const page = (e.target as HTMLButtonElement).dataset?.page;
-    window.history.pushState(page, '', `/${page}`);
+    window.history.pushState(page, '', page);
     this.setState({ page });
   };
 
   render() {
     const { page } = this.state;
-    const PageComponent = page === 'home' ? Home : About;
+    const PageComponent = page === '/about' ? About : Home;
     return (
       <div className="container">
-        <button data-page="home" onClick={this.onChangePage}>
+        <button data-page="/home" onClick={this.onChangePage}>
           Home
         </button>
-        <button data-page="about" onClick={this.onChangePage}>
+        <button data-page="/about" onClick={this.onChangePage}>
           About
         </button>
         <PageComponent />

@@ -7,7 +7,12 @@ directory = "lambda/"
 [build]
   command = "npm run build:netlify"
   functions = "lambda"
-  publish = "build2"
+  publish = "build"
+
+[[redirects]]
+  from = "/build/*"
+  to = "/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"

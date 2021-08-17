@@ -7,7 +7,7 @@ import App from './App';
 
 const app = express();
 const html = fs.readFileSync(
-  path.resolve(__dirname, '../build/index.html'),
+  path.resolve(__dirname, '../build/server.html'),
   'utf8',
 );
 app.use('/build', express.static('build'));
@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
   const serverData = {
     from: 'server',
   };
-  const renderString = renderToString(<App page={req.path.replace('/', '')} />);
+  const renderString = renderToString(<App page={req.path} />);
   const result = html
     .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)
     .replace('__DATA_FROM_SERVER__', JSON.stringify(serverData));
