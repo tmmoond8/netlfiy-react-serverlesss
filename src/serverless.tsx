@@ -1,12 +1,10 @@
 
 // @ts-ignore
-import path from "path";
+import React from "react";
 import serverless from "serverless-http";
 import express from "express";
-import fs from 'fs';
 import cors from "cors";
 import bodyParser from "body-parser";
-import React from "react";
 import { renderToString } from "react-dom/server";
 
 // Import React application
@@ -17,12 +15,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use("assets", express.static(path.resolve(__dirname, "./assets")));
-
-// Data to pass down, could be things like server headers or data fetched from an API
-const data = {
-	data: "Something here",
-};
 
 app.use('/static', express.static('static'));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
