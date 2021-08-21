@@ -10,7 +10,7 @@ const html = fs.readFileSync(
   path.resolve(__dirname, '../build/server.html'),
   'utf8',
 );
-app.use('/build', express.static('build'));
+app.use('/static', express.static(path.resolve(__dirname, '../build/static')));
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 app.get('*', (req, res) => {
   const serverData = {

@@ -19,8 +19,8 @@
     "dev": "nodemon lambda/server.js",
     "dev:lambda": "netlify-lambda serve lambda/functions",
     "build": "react-app-rewired build && mv build/index.html build/server.html",
-    "build:server": "react-app-rewired build --config-overrides config-overrides-server.js",
-    "build:serverless": "yarn tsc -p tsconfig.server.json",
+    "build:server": "yarn tsc -p tsconfig.server.json",
+    "build:serverless": "yarn babel --config-file babel.config.json --out-dir dist ./src ",
     "build:netlify": "yarn build && mv build/index.html build/server.html && yarn build:serverless"
   },
   "eslintConfig": {
@@ -41,6 +41,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/express": "^4.17.13",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
