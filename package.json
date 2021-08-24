@@ -18,7 +18,7 @@
     "type-check": "tsc --noEmit",
     "start": "react-app-rewired start",
     "dev": "nodemon lambda/funtions",
-    "dev:lambda": "netlify-lambda serve lambda/serverless",
+    "dev:lambda": "netlify-lambda serve lambda/functions",
     "build": "react-app-rewired build && mv build/index.html build/server.html",
     "build:server": "yarn tsc -p tsconfig.serverless.json",
     "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir lambda ./src --extensions \".ts,.tsx,.svg\" ",

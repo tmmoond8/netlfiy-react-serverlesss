@@ -1,8 +1,6 @@
 {
   "presets": [
-    ["@babel/typescript", {
-      "isJSX": true
-    }],
+    "@babel/typescript",
     "@babel/preset-react",
     "@babel/preset-env",
     ["@dr.pogodin/babel-preset-svgr", {
