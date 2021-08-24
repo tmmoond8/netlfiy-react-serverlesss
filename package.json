@@ -17,11 +17,12 @@
   "scripts": {
     "dev": "react-app-rewired start",
     "dev:lambda": "netlify-lambda serve lambda/functions",
-    "babel:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir lambda ./src --extensions \".ts,.tsx,.svg\"",
+    "babel:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir lambda ./src --extensions \".js,.jsx,mjs,.ts,.tsx,.svg\"",
     "build": "react-app-rewired build",
     "build:serverless": "yarn babel:serverless && yarn tool:replace-svg-to-js",
-    "build:netlify": "yarn build && yarn build:serverless",
-    "tool:replace-svg-to-js": "yarn replace-in-files --string='.svg' --replacement='.js' lambda/icons/index.js"
+    "build:netlify": "yarn build && yarn build:serverless && yarn tool:remove-env-d-js",
+    "tool:replace-svg-to-js": "yarn replace-in-files --string='.svg' --replacement='.js' lambda/icons/index.js",
+    "tool:remove-env-d-js": "rm lambda/react-app-env.d.js"
   },
   "eslintConfig": {
     "extends": [

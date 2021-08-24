@@ -8,7 +8,7 @@ import bodyParser from "body-parser";
 import { renderToString } from "react-dom/server";
 
 // Import React application
-import App from "../App";
+import App from "./App";
 
 // Setup for Express
 const app = express();
