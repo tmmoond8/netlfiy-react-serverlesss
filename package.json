@@ -19,10 +19,10 @@
     "start": "react-app-rewired start",
     "dev": "nodemon lambda/funtions",
     "dev:lambda": "netlify-lambda serve lambda/functions",
-    "build": "react-app-rewired build && mv build/index.html build/server.html",
+    "build": "react-app-rewired build",
     "build:server": "yarn tsc -p tsconfig.serverless.json",
     "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir lambda ./src --extensions \".ts,.tsx,.svg\" ",
-    "build:netlify": "yarn build && mv build/index.html build/server.html && yarn build:serverless"
+    "build:netlify": "yarn build && yarn build:serverless"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +52,7 @@
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "customize-cra": "^1.0.0",
+    "html-webpack-plugin": "^5.3.2",
     "netlify-lambda": "^2.0.14",
     "react-app-rewired": "^2.1.8",
     "typescript": "^4.3.5"
