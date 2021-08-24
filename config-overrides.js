@@ -1,7 +1,6 @@
 const { 
   override,
 } = require("customize-cra");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   webpack: override(
