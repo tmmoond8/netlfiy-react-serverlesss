@@ -19,10 +19,11 @@
     "dev:lambda": "netlify-lambda serve lambda/functions",
     "babel:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir lambda ./src --extensions \".js,.jsx,mjs,.ts,.tsx,.svg\"",
     "build": "react-app-rewired build",
-    "build:serverless": "yarn babel:serverless && yarn tool:replace-svg-to-js",
-    "build:netlify": "yarn build && yarn build:serverless && yarn tool:remove-env-d-js",
+    "build:serverless": "yarn babel:serverless && yarn tool:replace-svg-to-js && yarn tool:remove-env-d-js && yarn tool:cp-html",
+    "build:netlify": "yarn build && yarn build:serverless",
     "tool:replace-svg-to-js": "yarn replace-in-files --string='.svg' --replacement='.js' lambda/icons/index.js",
-    "tool:remove-env-d-js": "rm lambda/react-app-env.d.js"
+    "tool:remove-env-d-js": "rm lambda/react-app-env.d.js",
+    "tool:cp-html": "rm -rf lambda/asset && mkdir lambda/asset && cp build/server.html lambda/asset/"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
     "@types/express": "^4.17.13",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
+    "babel-plugin-transform-html-import-to-string": "^1.0.0",
     "customize-cra": "^1.0.0",
     "html-webpack-plugin": "^5.3.2",
     "netlify-lambda": "^2.0.14",
