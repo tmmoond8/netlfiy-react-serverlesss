@@ -8,7 +8,7 @@ import fetch from 'node-fetch';
 import bodyParser from "body-parser";
 import { renderToString } from "react-dom/server";
 import App from "./App";
-import parse5, { ParentNode, Element } from "parse5";
+import parse5, { ParentNode, Element, TextNode } from "parse5";
 // @ts-ignore
 import html from "../build/server.html";
 
@@ -24,7 +24,6 @@ app.get('*', async (req, res) => {
     title,
     userId,
     id,
-    completed
   } = await response.json();
   const serverData = {
     from: 'server',
@@ -64,9 +63,10 @@ interface MetaData { title: string, description: string, image?: string};
 function changeMeta(head: ParentNode, { title, description, image }: MetaData) {
   (head.childNodes as Element[]).forEach(({
     tagName,
-    attrs
+    attrs,
+    childNodes
   }) => {
-    if (tagName !== 'meta' || !attrs) return;
+    if (!attrs) return;
     if (tagName === 'meta') {
       setAttrsByProperty(attrs, 'og:title', title);
       setAttrsByProperty(attrs, 'twitter:title', title);
@@ -76,6 +76,9 @@ function changeMeta(head: ParentNode, { title, description, image }: MetaData) {
       if (image) {
         setAttrsByProperty(attrs, 'og:image', image);
       }
+    }
+    if (tagName === 'title' && childNodes[0]) {
+      (childNodes[0] as TextNode).value = 'title';
     }
   })
 }

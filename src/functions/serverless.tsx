@@ -8,7 +8,7 @@ import fetch from 'node-fetch';
 import bodyParser from "body-parser";
 import { renderToString } from "react-dom/server";
 import App from "../App";
-import parse5, { ParentNode, Element } from "parse5";
+import parse5, { ParentNode, Element, TextNode } from "parse5";
 // @ts-ignore
 import html from "../../build/server.html";
 
@@ -32,7 +32,7 @@ app.get('*', async (req, res) => {
   //SEO
   const document = parse5.parse(html);
   const head = getHead([document]);
-  changeMeta(head as ParentNode, {
+  changeHead(head as ParentNode, {
     title,
     description: `userId: ${userId}, id: ${id}`,
   });
@@ -61,12 +61,13 @@ function getHead(q: ParentNode[]) {
 }
 
 interface MetaData { title: string, description: string, image?: string};
-function changeMeta(head: ParentNode, { title, description, image }: MetaData) {
+function changeHead(head: ParentNode, { title, description, image }: MetaData) {
   (head.childNodes as Element[]).forEach(({
     tagName,
-    attrs
+    attrs,
+    childNodes
   }) => {
-    if (tagName !== 'meta' || !attrs) return;
+    if (!attrs) return;
     if (tagName === 'meta') {
       setAttrsByProperty(attrs, 'og:title', title);
       setAttrsByProperty(attrs, 'twitter:title', title);
@@ -76,6 +77,9 @@ function changeMeta(head: ParentNode, { title, description, image }: MetaData) {
       if (image) {
         setAttrsByProperty(attrs, 'og:image', image);
       }
+    }
+    if (tagName === 'title' && childNodes[0]) {
+      (childNodes[0] as TextNode).value = 'title';
     }
   })
 }
