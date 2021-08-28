@@ -1,1 +1,0 @@
-# react serverless deploy to netlify
