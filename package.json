@@ -28,10 +28,11 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir netlify-functions ./src --extensions \",.js,.jsx,mjs,.ts,.tsx,.svg\"",
-    "build:netlify": "yarn build && yarn build:serverless",
+    "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir netlify-functions ./src --extensions \",.js,.jsx,mjs,.ts,.tsx,.svg\" && yarn tool:remove-env-d-js",
+    "build:netlify": "yarn build && yarn build:serverless ",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "tool:remove-env-d-js": "rm netlify-functions/react-app-env.d.js"
   },
   "eslintConfig": {
     "extends": [
