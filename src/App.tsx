@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link
@@ -14,25 +13,23 @@ dotenv.config();
 function App() {
   return (
     <>
-      <Router>
-        {process.env.REACT_APP_ENV}
-        <ul>
-          <li>
-            <Link to="/about">about</Link>
-          </li>
-          <li>
-            <Link to="/">home</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      {process.env.REACT_APP_ENV}
+      <ul>
+        <li>
+          <Link to="/about">about</Link>
+        </li>
+        <li>
+          <Link to="/">home</Link>
+        </li>
+      </ul>
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </>
   );
 }
