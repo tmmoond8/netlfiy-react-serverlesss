@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir netlify-functions ./src --extensions \".js,.jsx,mjs,.ts,.tsx,.svg\"",
+    "build:serverless": "yarn babel --config-file ./babel.serverless.json --out-dir netlify-functions ./src --extensions \",.js,.jsx,mjs,.ts,.tsx,.svg\"",
     "build:netlify": "yarn build && yarn build:serverless",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
