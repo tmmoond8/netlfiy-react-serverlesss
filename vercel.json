@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/build/:path*", "destination": "/:path*" },
+    { "source": "*", "destination": "/api/serverless" }
+  ]
+}
