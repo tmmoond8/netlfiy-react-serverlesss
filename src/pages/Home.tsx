@@ -5,7 +5,7 @@ function Home() {
   const [ data, setData ] = useState(null);
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get('/.netlify/functions/getTopic');
+      const { data } = await axios.get('/api/getTopic');
       setData(data);
     })();
   }, [])
