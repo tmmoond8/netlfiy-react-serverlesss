@@ -7,7 +7,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import App from "./App";
 // @ts-ignore
-import html from "../build/.server.html";
+import html from "../build/index.html";
 
 const app = express();
 app.use(cors());
