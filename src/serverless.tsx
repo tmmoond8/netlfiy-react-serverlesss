@@ -26,7 +26,7 @@ app.get('*', async (req, res) => {
   );
   const result = html
     .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)
-    .replace('__DATA_FROM_SERVER__', JSON.stringify(serverData));
+    .replace('{from:"client"}', JSON.stringify(serverData));
   res.send(result);
 });
 
